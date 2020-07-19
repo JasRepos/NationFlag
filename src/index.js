@@ -1,19 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './app/App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./app/App";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { configureStore } from "./app/store/configureStore";
 
-const rootEl =  document.getElementById('root');
+const store = configureStore();
+
+const rootEl = document.getElementById("root");
 
 let render = () => {
-  ReactDOM.render(<App/>, rootEl)
-}
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    rootEl
+  );
+};
 
-if (module.hot){
-  module.hot.accept('./app/App', () => {
-    setTimeout(render)
-  })
+if (module.hot) {
+  module.hot.accept("./app/App", () => {
+    setTimeout(render);
+  });
 }
 
 render();
