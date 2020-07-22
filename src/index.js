@@ -5,8 +5,10 @@ import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { configureStore } from "./app/store/configureStore";
+import { loadCountries } from "./features/country/countryActions";
 
 const store = configureStore();
+store.dispatch(loadCountries())
 
 const rootEl = document.getElementById("root");
 
